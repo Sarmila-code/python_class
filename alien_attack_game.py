@@ -24,22 +24,31 @@ def setup_mission():
 def get_charged_batteries():
     battries = [50, 30, 4, 45, 12, 18, 30] #battery basket
     minimum_battery_power= 20 ##battery use minimum 20% charge
+    usable_battery_power= 0
+    usable_battery_count= 0
     for battery in batteries: ##check every battery
        if battery > minimum_battery_power: #check if battery is over charge 20% to use 
+        usable_battery_power += battery #if yes check battery power
         usable_battery_count = usable_battery_count +1 #if yes use battery count add
         if usable_battery_power >= 100: 
-        return usable_battery_power, usbale_battery_count 
+          return usable_battery_power, usable_battery_count 
        
 def decrypt_alien_message(alien_message):
-  human_message = alien_message [::-1] #reverse string
+  human_message = alien_message [::-1] ##reverse string
   return human_message 
-def food_divide_equally (foods, crews_member)
+
+def food_divide_equally (foods, crews_member):
   equally_foods = len (foods) // crews_member
   remaining_foods = len(foods) % crews_member 
   return equally_foods, remaining_foods
 
 def alien_attack_game():
   print("Welcome to Alien Attack Game")
+  print("starting mission.....")
+  crews_number, foods = setup_mission ()
+  print(f"You have {crews_number} astronauts and food available = {foods}")
+
+  print("WELCOME TO THE MARS!!!!!")
 
   print("your battery is dead please change the battery")
   battery_power, battery_count = get_charged_batteries
@@ -58,18 +67,6 @@ def alien_attack_game():
 
   equally_divided, remaining_food = food_divide_equally(foods, crews_number)
   print(f"You have {equally_divided} foods divided equally and remaining = {remaining_food}")
-
-  print("Starting mission......")
-
-  crews_number, foods = setup_mission()
-  print(f"You have {crews_number} astronauts and food avaiable = {foods}")
-
-print("WELCOME TO THE MARS!!!!!")
-
-print ("Your battery is dead please change the battery")
-
 print ("Okay...Now you can go to Earth")
-
 print("Mission completed")
   
-alien_attack_game()
